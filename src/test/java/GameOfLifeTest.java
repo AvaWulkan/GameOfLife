@@ -44,5 +44,15 @@ public class GameOfLifeTest {
         testBoard.goToNextGeneration();
         assertEquals(1,testBoard.getCellState(1,1));
     }
-    // TODO deadCellComesToLife: live neighbors = 3
+
+    @Test
+    public void deadCellComesToLife(){
+        //live neighbors = 3
+        GameOfLife testBoard = new GameOfLife(3, 3);
+        testBoard.setCellToAlive(0,0);
+        testBoard.setCellToAlive(0,1);
+        testBoard.setCellToAlive(0,2);
+        testBoard.goToNextGeneration();
+        assertEquals(1,testBoard.getCellState(1,1));
+    }
 }

@@ -25,6 +25,8 @@ public class GameOfLife {
                     }else if (countLiveNeighbors(i, j) == 2 || countLiveNeighbors(i, j) == 3 ){
                         tempGameBoard.setCellToAlive(i, j);
                     }
+                }else if (countLiveNeighbors(i, j) == 3){
+                    tempGameBoard.setCellToAlive(i, j);
                 }
             }
         }
