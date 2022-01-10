@@ -9,6 +9,7 @@ public class GameOfLife {
     public void setCellToAlive(int column, int row){
         gameBoard[column][row] = 1;
     }
+
     private void setCellToDead(int column, int row){
         gameBoard[column][row] = 0;
     }
@@ -17,15 +18,16 @@ public class GameOfLife {
         GameOfLife tempGameBoard = new GameOfLife(gameBoard.length,gameBoard[0].length);
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard[i].length; j++) {
+                int numberOfliveNeighbors = countLiveNeighbors(i, j);
                 if (gameBoard[i][j] == 1){
-                    if (countLiveNeighbors(i, j) < 2){
+                    if (numberOfliveNeighbors < 2){
                         tempGameBoard.setCellToDead(i, j);
-                    }else if (countLiveNeighbors(i,j) > 3){
+                    }else if (numberOfliveNeighbors > 3){
                         tempGameBoard.setCellToDead(i, j);
-                    }else if (countLiveNeighbors(i, j) == 2 || countLiveNeighbors(i, j) == 3 ){
+                    }else if (numberOfliveNeighbors == 2 || numberOfliveNeighbors == 3){
                         tempGameBoard.setCellToAlive(i, j);
                     }
-                }else if (countLiveNeighbors(i, j) == 3){
+                }else if (numberOfliveNeighbors == 3){
                     tempGameBoard.setCellToAlive(i, j);
                 }
             }
@@ -33,13 +35,13 @@ public class GameOfLife {
         gameBoard = tempGameBoard.gameBoard;
     }
 
-    private int countLiveNeighbors(int column, int row) {
+    public int countLiveNeighbors(int column, int row) {
         int numberOfLivingNeighbors = 0;
-        for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
-                int x = (i + column + gameBoard.length) % gameBoard.length;
-                int y = (j + row + gameBoard[0].length) % gameBoard[0].length;
-                numberOfLivingNeighbors += gameBoard[x][y];
+        for (int i = column-1; i <= column+1; i++) {
+            for (int j = row-1; j <= row+1; j++) {
+                if (i>=0 && i< gameBoard.length && j>=0 && j< gameBoard[0].length){
+                    numberOfLivingNeighbors += gameBoard[i][j];
+                }
             }
         }
         numberOfLivingNeighbors -= gameBoard[column][row];
