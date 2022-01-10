@@ -13,15 +13,25 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GameOfLifeTest {
     @Test
     public void liveCellDiesDueToUnderpopulation(){
-      //live neighbors < 2
+        //live neighbors < 2
         GameOfLife testBoard = new GameOfLife(2, 2);
         testBoard.setCellToAlive(1,1);
         testBoard.goToNextGeneration();
         assertEquals(0,testBoard.getCellState(1,1));
     }
 
-    // TODO liveCellDiesDueToOvercrowding: live neighbors > 3
-
+    @Test
+    public void liveCellDiesDueToOvercrowding(){
+        //live neighbors > 3
+        GameOfLife testBoard = new GameOfLife(3, 3);
+        testBoard.setCellToAlive(1,1);
+        testBoard.setCellToAlive(0,0);
+        testBoard.setCellToAlive(0,1);
+        testBoard.setCellToAlive(0,2);
+        testBoard.setCellToAlive(2,2);
+        testBoard.goToNextGeneration();
+        assertEquals(0,testBoard.getCellState(1,1));
+    }
     // TODO liveCellLivesOnToNextGeneration: live neighbors = 2 or 3
 
     // TODO deadCellComesToLife: live neighbors = 3
