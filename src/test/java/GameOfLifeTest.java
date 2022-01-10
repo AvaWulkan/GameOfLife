@@ -6,8 +6,19 @@
 // generation.
 // 4. Any dead cell with exactly three live neighbors becomes a live cell.
 
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 public class GameOfLifeTest {
-    // TODO liveCellDiesDueToUnderpopulation: live neighbors < 2
+    @Test
+    public void liveCellDiesDueToUnderpopulation(){
+      //live neighbors < 2
+        GameOfLife testBoard = new GameOfLife(2, 2);
+        testBoard.setCellToAlive(1,1);
+        testBoard.goToNextGeneration();
+        assertEquals(0,testBoard.getCellState(1,1));
+    }
 
     // TODO liveCellDiesDueToOvercrowding: live neighbors > 3
 
