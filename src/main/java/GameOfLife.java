@@ -20,9 +20,10 @@ public class GameOfLife {
                 if (gameBoard[i][j] == 1){
                     if (countLiveNeighbors(i, j) < 2){
                         tempGameBoard.setCellToDead(i, j);
-                    }
-                    if (countLiveNeighbors(i,j) > 3){
+                    }else if (countLiveNeighbors(i,j) > 3){
                         tempGameBoard.setCellToDead(i, j);
+                    }else if (countLiveNeighbors(i, j) == 2 || countLiveNeighbors(i, j) == 3 ){
+                        tempGameBoard.setCellToAlive(i, j);
                     }
                 }
             }
