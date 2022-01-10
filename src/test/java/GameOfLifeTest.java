@@ -64,4 +64,56 @@ public class GameOfLifeTest {
         assertEquals(1,testBoard.getCellState(1,1));
     }
 
+    @Test
+    public void edgeTestBirth(){
+        System.out.println("edgeTestBirth:");
+        GameOfLife testBoard = new GameOfLife(2, 3);
+        testBoard.setCellToAlive(0,0);
+        testBoard.setCellToAlive(0,2);
+        testBoard.setCellToAlive(1,0);
+        testBoard.printGameboard();
+        assertEquals(3, testBoard.countLiveNeighbors(0,1));
+        testBoard.goToNextGeneration();
+        assertEquals(1, testBoard.getCellState(0,1));
+    }
+
+    @Test
+    public void edgeTestDeath(){
+        System.out.println("edgeTestDeath:");
+        GameOfLife testBoard = new GameOfLife(3, 3);
+        testBoard.setCellToAlive(0,0);
+        testBoard.setCellToAlive(0,1);
+        testBoard.setCellToAlive(0,2);
+        testBoard.setCellToAlive(1,0);
+        testBoard.setCellToAlive(1,1);
+        testBoard.setCellToAlive(1,2);
+        testBoard.printGameboard();
+        assertEquals(5, testBoard.countLiveNeighbors(0,1));
+        testBoard.goToNextGeneration();
+        assertEquals(0, testBoard.getCellState(0,1));
+    }
+
+    @Test
+    public void cornerTestBirth(){
+        System.out.println("cornerTestBirth:");
+        GameOfLife testBoard = new GameOfLife(2, 2);
+        testBoard.setCellToAlive(0,1);
+        testBoard.setCellToAlive(1,0);
+        testBoard.setCellToAlive(1,1);
+        testBoard.printGameboard();
+        assertEquals(3, testBoard.countLiveNeighbors(0,0));
+        testBoard.goToNextGeneration();
+        assertEquals(1, testBoard.getCellState(0,0));
+    }
+
+    @Test
+    public void cornerTestDeath(){
+        System.out.println("cornerTestDeath:");
+        GameOfLife testBoard = new GameOfLife(2, 2);
+        testBoard.setCellToAlive(0,0);
+        testBoard.printGameboard();
+        assertEquals(0, testBoard.countLiveNeighbors(0,0));
+        testBoard.goToNextGeneration();
+        assertEquals(0, testBoard.getCellState(0,0));
+    }
 }
