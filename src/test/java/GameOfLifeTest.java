@@ -65,6 +65,15 @@ public class GameOfLifeTest {
     }
 
     @Test
+    public void deadCellStayDead(){
+        System.out.println("deadCellStayDead:");
+        GameOfLife testBoard = new GameOfLife(3, 3);
+        testBoard.printGameboard();
+        testBoard.goToNextGeneration();
+        assertEquals(0,testBoard.getCellState(1,1));
+    }
+
+    @Test
     public void edgeTestBirth(){
         System.out.println("edgeTestBirth:");
         GameOfLife testBoard = new GameOfLife(2, 3);
