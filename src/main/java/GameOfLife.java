@@ -6,10 +6,6 @@ public class GameOfLife {
         gameBoard = new int[columns][rows];
     }
 
-    public GameOfLife(int[][] grid) {
-        gameBoard = grid;
-    }
-
     public void setCellToAlive(int column, int row){
         gameBoard[column][row] = 1;
     }
@@ -22,20 +18,20 @@ public class GameOfLife {
         GameOfLife tempGameBoard = new GameOfLife(numberOfColumns(), numberOfRows());
         for (int i = 0; i < numberOfColumns(); i++) {
             for (int j = 0; j < numberOfRows(); j++) {
-                int numberOfliveNeighbors = countLiveNeighbors(i, j);
-                if (gameBoard[i][j] == 1){
-                    if (numberOfliveNeighbors == 2 || numberOfliveNeighbors == 3){
+                int numberOfLivingNeighbors = countLiveNeighbors(i, j);
+                if (getCellState(i,j).equals("ALIVE")){
+                    if (numberOfLivingNeighbors == 2 || numberOfLivingNeighbors == 3){
                         tempGameBoard.setCellToAlive(i, j);
                     }else{
                         tempGameBoard.setCellToDead(i, j);
                     }
-                }else if (numberOfliveNeighbors == 3){
+                }else if (getCellState(i,j).equals("DEAD") && numberOfLivingNeighbors == 3){
                     tempGameBoard.setCellToAlive(i, j);
                 }
             }
         }
         gameBoard = tempGameBoard.gameBoard;
-        printGameboard();
+        printGameBoard();
     }
 
     private int numberOfRows() {
@@ -46,7 +42,7 @@ public class GameOfLife {
         return gameBoard.length;
     }
 
-    public void printGameboard() {
+    public void printGameBoard() {
         for (int i = 0; i < numberOfColumns(); i++) {
             for (int j = 0; j < numberOfRows(); j++) {
                 System.out.print(gameBoard[i][j] + " ");
@@ -69,7 +65,11 @@ public class GameOfLife {
         return numberOfLivingNeighbors;
     }
 
-    public int getCellState(int column, int row) {
-        return gameBoard[column][row];
+    public String getCellState(int column, int row) {
+        return switch (gameBoard[column][row]) {
+            case 1 -> "ALIVE";
+            case 0 -> "DEAD";
+            default -> "something went wrong";
+        };
     }
 }

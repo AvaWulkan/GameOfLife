@@ -16,10 +16,10 @@ public class GameOfLifeTest {
         System.out.println("liveCellDiesDueToUnderpopulation:");
         GameOfLife testBoard = new GameOfLife(2, 2);
         testBoard.setCellToAlive(1,1);
-        testBoard.printGameboard();
+        testBoard.printGameBoard();
         assertEquals(0, testBoard.countLiveNeighbors(1,1));
         testBoard.goToNextGeneration();
-        assertEquals(0,testBoard.getCellState(1,1));
+        assertEquals("DEAD",testBoard.getCellState(1,1));
     }
 
     @Test
@@ -31,10 +31,10 @@ public class GameOfLifeTest {
         testBoard.setCellToAlive(0,1);
         testBoard.setCellToAlive(0,2);
         testBoard.setCellToAlive(2,2);
-        testBoard.printGameboard();
+        testBoard.printGameBoard();
         assertEquals(4, testBoard.countLiveNeighbors(1,1));
         testBoard.goToNextGeneration();
-        assertEquals(0,testBoard.getCellState(1,1));
+        assertEquals("DEAD",testBoard.getCellState(1,1));
     }
 
     @Test
@@ -45,10 +45,10 @@ public class GameOfLifeTest {
         testBoard.setCellToAlive(0,0);
         testBoard.setCellToAlive(0,1);
         testBoard.setCellToAlive(0,2);
-        testBoard.printGameboard();
+        testBoard.printGameBoard();
         assertEquals(3, testBoard.countLiveNeighbors(1,1));
         testBoard.goToNextGeneration();
-        assertEquals(1,testBoard.getCellState(1,1));
+        assertEquals("ALIVE",testBoard.getCellState(1,1));
     }
 
     @Test
@@ -58,19 +58,19 @@ public class GameOfLifeTest {
         testBoard.setCellToAlive(0,0);
         testBoard.setCellToAlive(0,1);
         testBoard.setCellToAlive(0,2);
-        testBoard.printGameboard();
+        testBoard.printGameBoard();
         assertEquals(3, testBoard.countLiveNeighbors(1,1));
         testBoard.goToNextGeneration();
-        assertEquals(1,testBoard.getCellState(1,1));
+        assertEquals("ALIVE",testBoard.getCellState(1,1));
     }
 
     @Test
     public void deadCellStayDead(){
         System.out.println("deadCellStayDead:");
         GameOfLife testBoard = new GameOfLife(3, 3);
-        testBoard.printGameboard();
+        testBoard.printGameBoard();
         testBoard.goToNextGeneration();
-        assertEquals(0,testBoard.getCellState(1,1));
+        assertEquals("DEAD",testBoard.getCellState(1,1));
     }
 
     @Test
@@ -80,10 +80,10 @@ public class GameOfLifeTest {
         testBoard.setCellToAlive(0,0);
         testBoard.setCellToAlive(0,2);
         testBoard.setCellToAlive(1,0);
-        testBoard.printGameboard();
+        testBoard.printGameBoard();
         assertEquals(3, testBoard.countLiveNeighbors(0,1));
         testBoard.goToNextGeneration();
-        assertEquals(1, testBoard.getCellState(0,1));
+        assertEquals("ALIVE", testBoard.getCellState(0,1));
     }
 
     @Test
@@ -96,10 +96,10 @@ public class GameOfLifeTest {
         testBoard.setCellToAlive(1,0);
         testBoard.setCellToAlive(1,1);
         testBoard.setCellToAlive(1,2);
-        testBoard.printGameboard();
+        testBoard.printGameBoard();
         assertEquals(5, testBoard.countLiveNeighbors(0,1));
         testBoard.goToNextGeneration();
-        assertEquals(0, testBoard.getCellState(0,1));
+        assertEquals("DEAD", testBoard.getCellState(0,1));
     }
 
     @Test
@@ -109,10 +109,10 @@ public class GameOfLifeTest {
         testBoard.setCellToAlive(0,1);
         testBoard.setCellToAlive(1,0);
         testBoard.setCellToAlive(1,1);
-        testBoard.printGameboard();
+        testBoard.printGameBoard();
         assertEquals(3, testBoard.countLiveNeighbors(0,0));
         testBoard.goToNextGeneration();
-        assertEquals(1, testBoard.getCellState(0,0));
+        assertEquals("ALIVE", testBoard.getCellState(0,0));
     }
 
     @Test
@@ -120,9 +120,9 @@ public class GameOfLifeTest {
         System.out.println("cornerTestDeath:");
         GameOfLife testBoard = new GameOfLife(2, 2);
         testBoard.setCellToAlive(0,0);
-        testBoard.printGameboard();
+        testBoard.printGameBoard();
         assertEquals(0, testBoard.countLiveNeighbors(0,0));
         testBoard.goToNextGeneration();
-        assertEquals(0, testBoard.getCellState(0,0));
+        assertEquals("DEAD", testBoard.getCellState(0,0));
     }
 }
