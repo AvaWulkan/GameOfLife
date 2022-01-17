@@ -16,7 +16,7 @@ public class GameOfLifeTest {
         System.out.println("liveCellDiesDueToUnderpopulation:");
         GameOfLife testBoard = new GameOfLife(2, 2);
         testBoard.setCellToAlive(1,1);
-        testBoard.printGameBoard();
+        System.out.println(testBoard.printGameBoard());
         assertEquals(0, testBoard.countLiveNeighbors(1,1));
         testBoard.goToNextGeneration();
         assertEquals("DEAD",testBoard.getCellState(1,1));
@@ -31,7 +31,7 @@ public class GameOfLifeTest {
         testBoard.setCellToAlive(0,1);
         testBoard.setCellToAlive(0,2);
         testBoard.setCellToAlive(2,2);
-        testBoard.printGameBoard();
+        System.out.println(testBoard.printGameBoard());
         assertEquals(4, testBoard.countLiveNeighbors(1,1));
         testBoard.goToNextGeneration();
         assertEquals("DEAD",testBoard.getCellState(1,1));
@@ -45,7 +45,7 @@ public class GameOfLifeTest {
         testBoard.setCellToAlive(0,0);
         testBoard.setCellToAlive(0,1);
         testBoard.setCellToAlive(0,2);
-        testBoard.printGameBoard();
+        System.out.println(testBoard.printGameBoard());
         assertEquals(3, testBoard.countLiveNeighbors(1,1));
         testBoard.goToNextGeneration();
         assertEquals("ALIVE",testBoard.getCellState(1,1));
@@ -58,7 +58,7 @@ public class GameOfLifeTest {
         testBoard.setCellToAlive(0,0);
         testBoard.setCellToAlive(0,1);
         testBoard.setCellToAlive(0,2);
-        testBoard.printGameBoard();
+        System.out.println(testBoard.printGameBoard());
         assertEquals(3, testBoard.countLiveNeighbors(1,1));
         testBoard.goToNextGeneration();
         assertEquals("ALIVE",testBoard.getCellState(1,1));
@@ -68,7 +68,7 @@ public class GameOfLifeTest {
     public void deadCellStayDead(){
         System.out.println("deadCellStayDead:");
         GameOfLife testBoard = new GameOfLife(3, 3);
-        testBoard.printGameBoard();
+        System.out.println(testBoard.printGameBoard());
         testBoard.goToNextGeneration();
         assertEquals("DEAD",testBoard.getCellState(1,1));
     }
@@ -80,7 +80,7 @@ public class GameOfLifeTest {
         testBoard.setCellToAlive(0,0);
         testBoard.setCellToAlive(0,2);
         testBoard.setCellToAlive(1,0);
-        testBoard.printGameBoard();
+        System.out.println(testBoard.printGameBoard());
         assertEquals(3, testBoard.countLiveNeighbors(0,1));
         testBoard.goToNextGeneration();
         assertEquals("ALIVE", testBoard.getCellState(0,1));
@@ -96,7 +96,7 @@ public class GameOfLifeTest {
         testBoard.setCellToAlive(1,0);
         testBoard.setCellToAlive(1,1);
         testBoard.setCellToAlive(1,2);
-        testBoard.printGameBoard();
+        System.out.println(testBoard.printGameBoard());
         assertEquals(5, testBoard.countLiveNeighbors(0,1));
         testBoard.goToNextGeneration();
         assertEquals("DEAD", testBoard.getCellState(0,1));
@@ -109,7 +109,7 @@ public class GameOfLifeTest {
         testBoard.setCellToAlive(0,1);
         testBoard.setCellToAlive(1,0);
         testBoard.setCellToAlive(1,1);
-        testBoard.printGameBoard();
+        System.out.println(testBoard.printGameBoard());
         assertEquals(3, testBoard.countLiveNeighbors(0,0));
         testBoard.goToNextGeneration();
         assertEquals("ALIVE", testBoard.getCellState(0,0));
@@ -120,9 +120,19 @@ public class GameOfLifeTest {
         System.out.println("cornerTestDeath:");
         GameOfLife testBoard = new GameOfLife(2, 2);
         testBoard.setCellToAlive(0,0);
-        testBoard.printGameBoard();
+        System.out.println(testBoard.printGameBoard());
         assertEquals(0, testBoard.countLiveNeighbors(0,0));
         testBoard.goToNextGeneration();
         assertEquals("DEAD", testBoard.getCellState(0,0));
     }
+
+    @Test
+    public void printGameBoardTest(){
+        GameOfLife testBoard = new GameOfLife(3,3);
+        testBoard.setCellToAlive(0,1);
+        testBoard.setCellToAlive(2,0);
+        testBoard.setCellToAlive(1,1);
+        assertEquals("0 1 0 \n0 1 0 \n1 0 0 \n\n", testBoard.printGameBoard());
+    }
+
 }

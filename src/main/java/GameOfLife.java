@@ -31,7 +31,7 @@ public class GameOfLife {
             }
         }
         gameBoard = tempGameBoard.gameBoard;
-        printGameBoard();
+        System.out.println(printGameBoard());
     }
 
     private int numberOfRows() {
@@ -42,14 +42,16 @@ public class GameOfLife {
         return gameBoard.length;
     }
 
-    public void printGameBoard() {
+    public String printGameBoard() {
+        StringBuilder gameBoardString = new StringBuilder();
         for (int i = 0; i < numberOfColumns(); i++) {
             for (int j = 0; j < numberOfRows(); j++) {
-                System.out.print(gameBoard[i][j] + " ");
+                gameBoardString.append(gameBoard[i][j]).append(" ");
             }
-            System.out.print("\n");
+            gameBoardString.append("\n");
         }
-        System.out.println();
+        gameBoardString.append("\n");
+        return gameBoardString.toString();
     }
 
     public int countLiveNeighbors(int column, int row) {
